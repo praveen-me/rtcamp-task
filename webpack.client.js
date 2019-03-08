@@ -1,14 +1,40 @@
 const path = require('path');
 const merge = require('webpack-merge');
-const baseConfig = require('./webpack.base');
+// const baseConfig = require('./webpack.base');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const config = {
+  mode : "development",
   target: "web",
   entry: "./client/index.js",
+  module: {
+    rules: [
+      {
+        test: /\.js?$/,
+        loader: "babel-loader",
+        exclude: /node_modules/
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          {
+            loader: 'css-loader',
+          },
+          { loader: 'sass-loader' }
+        ]
+      }
+    ]
+  },
   output: {
     filename: "client.bundle.js",
-    path: path.resolve(__dirname, "dist")
+    path: path.resolve(__dirname, "dist"),
+    publicPath: '/static/'
   },
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: "bundle.css",
+    }),
+  ]
 }
 
-module.exports = merge(baseConfig, config);
+module.exports =  config;

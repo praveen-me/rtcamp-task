@@ -8,7 +8,7 @@ const app = express();
 // Set path for static files
 app.use(express.static('dist'));
 
-app.get('*', (req, res) => {
+app.get('/*', (req, res) => {
   // MATCHING ROUTES FOR FETCHING DATA
   const promises = matchRoutes(routes, req.path).map(({route}) => {
     return route.loadData ? route.loadData(store) : null;

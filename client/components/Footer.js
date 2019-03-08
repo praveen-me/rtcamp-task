@@ -4,8 +4,8 @@ class Footer extends Component {
   render() {
     return (
       <footer>
-        <h1 className="logo">Wordpress Blog Theme</h1>
-        <p>Footer</p>
+        <p className="footer-text">WP REST API + REACTJS</p>
+        <p>Starter Theme</p>
       </footer>
     );
   }

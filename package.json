@@ -7,7 +7,8 @@
     "dev": "npm-run-all --parallel dev:*",
     "dev:server": "webpack --config webpack.server.js --watch",
     "dev:express": "nodemon dist/server.bundle.js",
-    "dev:client": "webpack --config webpack.client.js --watch"
+    "dev:client": "webpack --config webpack.client.js --watch",
+    "dev:scss" : "sass --watch client/scss/app.scss:dist/app.css"
   },
   "dependencies": {
     "@babel/core": "^7.3.4",
@@ -15,7 +16,11 @@
     "@babel/preset-react": "^7.0.0",
     "axios": "^0.18.0",
     "babel-loader": "^8.0.5",
+    "css-loader": "^2.1.1",
     "express": "^4.16.4",
+    "file-loader": "^3.0.1",
+    "mini-css-extract-plugin": "^0.5.0",
+    "node-sass": "^4.11.0",
     "nodemon": "^1.18.10",
     "npm-run-all": "^4.1.5",
     "react": "^16.8.4",
@@ -25,6 +30,7 @@
     "react-router-dom": "^4.3.1",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
+    "sass-loader": "^7.1.0",
     "webpack": "^4.29.6",
     "webpack-merge": "^4.2.1",
     "webpack-node-externals": "^1.7.2"

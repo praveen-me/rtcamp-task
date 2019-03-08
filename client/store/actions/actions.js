@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const actions = {
-  getUserData : () => dispatch => {
+  getPosts : () => dispatch => {
     axios.get('https://api.github.com/users/praveen-me')
       .then(userData => {
         dispatch({
