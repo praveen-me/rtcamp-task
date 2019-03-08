@@ -23,7 +23,7 @@ export function template(path, store) {
   return `
     <html>
       <head>
-        <link rel="stylesheet" href="app.css">
+        <link rel="stylesheet" href="bundle.css">
       </head>
       <body>
         <div id="root">${jsx}</div>

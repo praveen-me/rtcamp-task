@@ -18,17 +18,19 @@ const config = {
         test: /\.scss$/,
         use: [
           {
-            loader: 'css-loader',
+            loader: 'file-loader',
+            options: {
+              name: 'bundle.css',
+            }
           },
-          { loader: 'sass-loader' }
+          { loader: 'sass-loader' },
         ]
       }
     ]
   },
   output: {
     filename: "client.bundle.js",
-    path: path.resolve(__dirname, "dist"),
-    publicPath: '/static/'
+    path: path.resolve(__dirname, "dist")
   },
   plugins: [
     new MiniCssExtractPlugin({
