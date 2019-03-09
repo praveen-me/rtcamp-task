@@ -9,7 +9,7 @@ export default [
   },
   {
     ...Post,
-    path: '/posts',
+    path: '/posts/:id',
     exact: true,
   }
 ]

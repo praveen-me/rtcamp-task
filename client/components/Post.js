@@ -1,35 +1,40 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import actions from '../store/actions/actions';
+import axios from 'axios';
 
 class Post extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoading: true,
+      post: null
+    }
+  }
+  
   componentDidMount() {
-    this.props.dispatch(actions.getUserData())
+    // this.props.dispatch(actions.getUserData())
+    const {id} = this.props.match.params;
+    
+    axios.get(`https://demo.wp-api.org/wp-json/wp/v2/posts/${id}`)
+      .then((post) => {
+        this.setState({
+          post: post.data,
+          isLoading: false
+        })
+      })    
+    
   }
   
   render() {
-    // console.log(object);
     return (
       <div>
-        {
-          this.props.user.login ? <p>{this.props.user.login}</p> : <p>Loading...</p>
-        }
+        
       </div>
     );
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    user : state.user
-  };
-}
-
-function loadData(store) {
-  return store.dispatch(actions.getUserData());
-}
-
 export default {
-  component: connect(mapStateToProps)(Post),
-  loadData
+  component: connect()(Post),
 };

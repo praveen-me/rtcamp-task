@@ -12,6 +12,8 @@ import store from './store/store';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
+import './scss/app.scss'
+
 const JSX =() => (
   <Provider store={store}>
     <BrowserRouter>

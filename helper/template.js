@@ -13,9 +13,13 @@ export function template(path, store) {
     <Provider store={store}>
         <StaticRouter context={{}} location={path}>
           <>
-            <Header />
-            <div>{renderRoutes(routes)}</div>
-            <Footer/>
+            <Header/>
+            <main>
+              {
+                renderRoutes(routes)
+              }
+            </main>
+            <Footer />
           </>
         </StaticRouter>
     </Provider>

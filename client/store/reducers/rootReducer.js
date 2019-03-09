@@ -1,12 +1,20 @@
-import actions from "../actions/actions";
+import { GET_POSTS } from "../actions/types";
 
 const initState = {
-  user: {} 
+  posts: null,
+  totalPages: 0, 
 }
 
 function rootReducer(state = initState, action) {
   switch(action.type) {
-    case "USER" : return {user : action.user}
+    case GET_POSTS :  {
+      const {posts, totalPages} = action.payload;
+      return {
+        ...state,
+        posts,
+        totalPages
+      }
+    }
     
     default: return state;
   }
