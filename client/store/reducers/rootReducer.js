@@ -1,8 +1,9 @@
-import { GET_POSTS } from "../actions/types";
+import { GET_POSTS, GET_CATEGORIES } from "../actions/types";
 
 const initState = {
   posts: null,
   totalPages: 0, 
+  categories: []
 }
 
 function rootReducer(state = initState, action) {
@@ -13,6 +14,14 @@ function rootReducer(state = initState, action) {
         ...state,
         posts,
         totalPages
+      }
+    }
+
+    case GET_CATEGORIES: {
+      const { categories } = action;
+      return {
+        ...state,
+        categories
       }
     }
     

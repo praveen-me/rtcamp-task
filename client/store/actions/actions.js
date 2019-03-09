@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {GET_POSTS, GET_POST} from './types';
+import {GET_POSTS, GET_POST, GET_CATEGORIES} from './types';
 
 const URI = 'http://demo.wp-api.org/wp-json/wp/v2'
 
@@ -25,6 +25,21 @@ const actions = {
           },
         })
         cb(true);
+      })
+      .catch(e => console.log(e.response.status))
+  },
+  // getting categories
+  getCategories: (cb) => (dispatch) => {
+  
+    axios.get(`${URI}/categories/`)
+      .then(categories => {
+        dispatch({
+          type : GET_CATEGORIES,
+          categories: categories.data.map(({ id, name }) => ({ id, name }))
+        })
+
+        // calling callback for setting getCategories to "false" in Home Component
+        cb(true)
       })
   }
 } 

@@ -15,6 +15,7 @@ class Home extends Component {
       perPage : 3,
       isLoading: true,
       currentPage: 1,
+      getCategories : true
     }
   }
   
@@ -22,6 +23,7 @@ class Home extends Component {
     // getting all posts when component loaded
     const {perPage, currentPage} = this.state;
     this.getAllPostForPage(currentPage, perPage);
+    this.props.dispatch(actions.getCategories);
   }
 
   // function for handlePagination 
@@ -46,16 +48,35 @@ class Home extends Component {
     
     this.props.dispatch(actions.getPosts(currentPage, perPage, (postsStatus) => {
       if (postsStatus) {
-        this.setState({
-          isLoading: false
-        })
+        // getting categories if it's first time
+        if (this.state.getCategories) {
+          
+          this.props.dispatch(actions.getCategories((categoriesStatus) => {
+            // setting getCategories to False in local state
+            if (categoriesStatus) {
+              this.setState({
+                getCategories: false,
+                isLoading: false
+              })
+            }
+          }));
+        } else {
+          this.setState({
+            isLoading: false
+          })
+        }
       }
     }));
   }
 
+  // getting posts by categories
+  handlePostsByCategories = e => {
+    
+  }
+
 
   render() {
-    const {posts, totalPages} = this.props;
+    const {posts, totalPages, categories} = this.props;
     const {isLoading, currentPage} = this.state;
 
 
@@ -67,6 +88,16 @@ class Home extends Component {
           {
             !isLoading ? (
               <>
+                <div className="categories-block">
+                  <select name="" id="">
+                    <option value="default">Select Category</option>
+                    {
+                      categories.map(category => (
+                        <option value={category.id} onClick={this.handlePostsByCategories}>{category.name}</option>
+                      ))
+                    }
+                  </select>
+                </div>
                 <div className="blogs-container">
                   <p>Latest from the Blog</p>
                   {
@@ -105,10 +136,11 @@ function loadData(store) {
 }
 
 function mapStateToProps(state) {
-  const {posts, totalPages} = state;
+  const {posts, totalPages, categories} = state;
   return  {
     posts,
     totalPages,
+    categories
   }
 }
 
