@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import actions from '../store/actions/actions';
 import {Link} from 'react-router-dom';
+import loadHOC from './loadHOC';
+import { compose } from 'redux';
 // import createDOMPurify from 'dompurify';
 // import { JSDOM } from 'jsdom';
 
@@ -15,15 +17,15 @@ class Home extends Component {
       perPage : 3,
       isLoading: true,
       currentPage: 1,
-      getCategories : true
+      getCategories : true,
+      currentCategory: ''
     }
   }
   
   componentDidMount() {
     // getting all posts when component loaded
-    const {perPage, currentPage} = this.state;
-    this.getAllPostForPage(currentPage, perPage);
-    this.props.dispatch(actions.getCategories);
+    const {perPage, currentPage, currentCategory} = this.state;
+    this.getAllPostForPage(currentPage, perPage, currentCategory);
   }
 
   // function for handlePagination 
@@ -32,25 +34,25 @@ class Home extends Component {
     this.setState({
       currentPage: Number(e.target.innerHTML)
     }, () => {
-      // then setting isLoading state true for loader
-      this.setState({
-        isLoading: true
-      }, () => {
-        // then fetch the data according to the current page
-        const {perPage, currentPage} = this.state;
+      // then fetch the data according to the current page
+      const {perPage, currentPage, currentCategory} = this.state;
+      
+      if(currentCategory && currentCategory !== 'default') {
+        this.postsByCategories(currentPage, currentCategory);
+      } else {
         this.getAllPostForPage(currentPage, perPage);
-      })
+      }
+
     })
   }
 
   // function for getting posts
   getAllPostForPage = (currentPage, perPage) => {
-    
+    // get Post for categories page
     this.props.dispatch(actions.getPosts(currentPage, perPage, (postsStatus) => {
       if (postsStatus) {
         // getting categories if it's first time
         if (this.state.getCategories) {
-          
           this.props.dispatch(actions.getCategories((categoriesStatus) => {
             // setting getCategories to False in local state
             if (categoriesStatus) {
@@ -71,14 +73,38 @@ class Home extends Component {
 
   // getting posts by categories
   handlePostsByCategories = e => {
-    
+    const {value} = e.target;
+
+    this.setState({
+      currentCategory: value,
+      currentPage: 1
+    }, () => {
+      const {currentCategory} = this.state;
+      console.log(currentCategory);
+      this.postsByCategories(1, currentCategory);
+    })
   }
 
+  postsByCategories = (page, category) => {
+    // checking if there's any category selected
+    if(!Number.isNaN(Number(category))) {
+      // console.log(curr);
+      this.props.dispatch(actions.getPostsByCategories(Number(category), page, (postsStatus) => {
+        if (postsStatus) {
+          this.setState({
+            isLoading: false
+          })
+        }
+      }))
+    } else if(category === 'default') {
+      const {perPage, currentPage} = this.state;
+      this.getAllPostForPage(currentPage, perPage);
+    }
+  }
 
   render() {
     const {posts, totalPages, categories} = this.props;
     const {isLoading, currentPage} = this.state;
-
 
     return (
       <section className="Home">
@@ -89,11 +115,13 @@ class Home extends Component {
             !isLoading ? (
               <>
                 <div className="categories-block">
-                  <select name="" id="">
+                  <select name="currentCategory" onChange={this.handlePostsByCategories}>
                     <option value="default">Select Category</option>
                     {
                       categories.map(category => (
-                        <option value={category.id} onClick={this.handlePostsByCategories}>{category.name}</option>
+                        <option 
+                        value={category.id} 
+                        key={category.id}>{category.name}</option>
                       ))
                     }
                   </select>
@@ -132,11 +160,12 @@ class Home extends Component {
 }
 
 function loadData(store) {
-  return store.dispatch(actions.getPosts());
+  return store.dispatch(actions.getPosts(1, 3, () => {}));
 }
 
 function mapStateToProps(state) {
   const {posts, totalPages, categories} = state;
+  console.log(totalPages);
   return  {
     posts,
     totalPages,

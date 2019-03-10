@@ -3,10 +3,13 @@ import { template } from '../helper/template';
 import store from '../client/store/store';
 import {matchRoutes} from 'react-router-config';
 import routes from '../client/routes';
+import proxy from 'express-http-proxy';
+
 const app = express();
 
 // Set path for static files
 app.use(express.static('dist'));
+// app.use('/api', proxy('https://wplift.com'));
 
 app.get('/*', (req, res) => {
   // MATCHING ROUTES FOR FETCHING DATA

@@ -26,7 +26,6 @@ const actions = {
         })
         cb(true);
       })
-      .catch(e => console.log(e.response.status))
   },
   // getting categories
   getCategories: (cb) => (dispatch) => {
@@ -40,6 +39,28 @@ const actions = {
 
         // calling callback for setting getCategories to "false" in Home Component
         cb(true)
+      })
+  },
+  // Getting Posts By Categories
+  getPostsByCategories: (categoryId, page, cb) => (dispatch) => {
+    console.log(categoryId);
+    axios.get(`${URI}/posts?categories=${categoryId}&per_page=3&page=${page}`)
+      .then(posts => {
+        console.log(posts.data);
+        const pagesArr = [];
+        dispatch({
+          type: GET_POSTS,
+          payload : {
+            posts: posts.data,
+            totalPages: (() => {
+              for (let i = 1; i <= Number(posts.headers['x-wp-totalpages']); i++) {
+                pagesArr.push(i);
+              }
+              return pagesArr
+            })()
+          },
+        })
+        cb(true);
       })
   }
 } 
