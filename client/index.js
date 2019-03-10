@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import {BrowserRouter,} from 'react-router-dom';
 import { renderRoutes } from 'react-router-config';
 import {Provider} from 'react-redux';
-
+import './scss/app.scss'
 
 // Import Routes
 import routes from './routes';
@@ -13,7 +13,6 @@ import store from './store/store';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
-import './scss/app.scss'
 
 const JSX =() => (
   <Provider store={store}>

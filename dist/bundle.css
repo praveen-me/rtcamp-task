@@ -375,6 +375,9 @@ ul {
   list-style-type: none;
   padding: 0; }
 
+.center {
+  text-align: center; }
+
 header {
   margin: 2rem auto !important; }
   header p {
@@ -397,9 +400,10 @@ header {
   padding: 1rem; }
 
 .post-title {
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-family: "Roboto Condensed", sans-serif;
-  margin-bottom: 0; }
+  margin-bottom: 0;
+  color: #0683b1; }
   .post-title a {
     color: #0683b1 !important; }
 

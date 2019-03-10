@@ -130,7 +130,7 @@ class Home extends Component {
                   <p>Latest from the Blog</p>
                   {
                     posts.map((post) => (
-                        <div className="post-block" key={post.id}>
+                      <div className="post-block" key={post.id}>
                         <h3 className="post-title"><Link to={`/posts/${post.id}`}>{post.title.rendered}</Link></h3>
                         <div className="post-excerpt" dangerouslySetInnerHTML={{ __html : post.excerpt.rendered}}></div>
                       </div>
