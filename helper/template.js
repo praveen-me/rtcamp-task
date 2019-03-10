@@ -7,7 +7,6 @@ import {Provider} from 'react-redux';
 import Header from '../client/components/Header';
 import Footer from '../client/components/Footer';
 
-
 export function template(path, store) {
   const jsx = renderToString(
     <Provider store={store}>
@@ -23,15 +22,16 @@ export function template(path, store) {
           </>
         </StaticRouter>
     </Provider>
-  )
+  );
   return `
     <html>
       <head>
-        <link rel="stylesheet" href="bundle.css" />
+        <title>Simple Blog Theme - RT Camp Task</title>
+        <link rel="stylesheet" href="/bundle.css" />
       </head>
       <body>
         <div id="root">${jsx}</div>
-        <script src="client.bundle.js"></script>
+        <script src="/client.bundle.js"></script>
       </body>
     </html>
   `

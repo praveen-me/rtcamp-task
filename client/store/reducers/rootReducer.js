@@ -14,7 +14,8 @@ function rootReducer(state = initState, action) {
       return {
         ...state,
         posts,
-        totalPages
+        totalPages,
+        currentPost: null
       }
     }
 

@@ -1,8 +1,9 @@
 {
-  "name": "react-redux-ssr",
+  "name": "rtcamp-task",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "author": "Praveen Kumar Saini",
   "scripts": {
     "dev": "npm-run-all --parallel dev:*",
     "dev:server": "webpack --config webpack.server.js --watch",

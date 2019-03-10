@@ -1,15 +1,11 @@
 import axios from 'axios';
 import {GET_POSTS, GET_POST, GET_CATEGORIES, GET_SINGLE_POST} from './types';
 
-const URI = 'http://demo.wp-api.org/wp-json/wp/v2'
+const URI = 'https://demo.wp-api.org/wp-json/wp/v2';
 
 const actions = {
   getPosts : (page, perPage, cb) => (dispatch) => {
-    axios.get(`${URI}/posts?per_page=${perPage}&page=${page}`, {
-      headers: {
-        'Access-Control-Allow-Origin' : 'http://localhost:3001'
-      }
-    })
+    axios.get(`${URI}/posts?per_page=${perPage}&page=${page}`)
       .then(posts => {
         const pagesArr = [];
         dispatch({
@@ -71,6 +67,7 @@ const actions = {
           post: post.data
         })
       })
+      .catch(e => console.log(e.status))
   } 
 } 
 

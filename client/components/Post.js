@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import actions from '../store/actions/actions';
 
-let postId = null;
-
 class Post extends Component {
   constructor(props) {
     super(props);
@@ -14,7 +12,6 @@ class Post extends Component {
   
   componentDidMount() {
     const {id} = this.props.match.params;
-    postId = id;
     this.props.dispatch(actions.getSinglePost(id))
   }
   
@@ -46,8 +43,8 @@ function mapStateToProps(state, ownProps) {
   }
 }
 
-function loadData(store) {
-  return store.dispatch(actions.getSinglePost(1))
+function loadData(store, postId) {
+  return store.dispatch(actions.getSinglePost(postId))
 }
 
 export default {
