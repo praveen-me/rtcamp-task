@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import axios from 'axios';
+import actions from '../store/actions/actions';
+
+let postId = null;
 
 class Post extends Component {
   constructor(props) {
@@ -11,20 +13,13 @@ class Post extends Component {
   }
   
   componentDidMount() {
-    // this.props.dispatch(actions.getUserData())
     const {id} = this.props.match.params;
-    
-    axios.get(`https://demo.wp-api.org/wp-json/wp/v2/posts/${id}`)
-      .then((post) => {
-        this.setState({
-          post: post.data
-        })
-      })    
-    
+    postId = id;
+    this.props.dispatch(actions.getSinglePost(id))
   }
   
   render() {
-    const {post} = this.state;
+    const {post} = this.props;
     return (
       <section >
         <div className="wrapper">
@@ -42,6 +37,20 @@ class Post extends Component {
   }
 }
 
+function mapStateToProps(state, ownProps) {
+  const {id} = ownProps.match.params;
+  
+  return {
+    post : state.currentPost,
+    id
+  }
+}
+
+function loadData(store) {
+  return store.dispatch(actions.getSinglePost(1))
+}
+
 export default {
-  component: connect()(Post),
+  component: connect(mapStateToProps)(Post),
+  loadData
 };

@@ -5,7 +5,7 @@ class Header extends Component {
   render() {
     return (
       <header className="wrapper">
-        <h1 className="logo">Simple Blog Theme</h1>
+        <h1 className="logo"><Link to="/">Simple Blog Theme</Link></h1>
         <p>Just another Wordpress Theme</p>
       </header>
     );

@@ -1,5 +1,8 @@
 @import'./vars';
 
+body {
+  position: relative;
+}
 
 *, *:after, *:before {
   box-sizing: border-box;
@@ -8,7 +11,7 @@
 .wrapper {
   width: 960px;
   max-width: 100%;
-  margin: 1rem auto;
+  margin: 0rem auto;
 }
 
 p {
@@ -26,4 +29,8 @@ ul {
 
 .center {
   text-align: center;
+}
+
+section {
+  padding: 2rem 0 5rem 0;
 }

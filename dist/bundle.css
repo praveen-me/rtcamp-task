@@ -357,13 +357,16 @@ td,
 th {
   padding: 0; }
 
+body {
+  position: relative; }
+
 *, *:after, *:before {
   box-sizing: border-box; }
 
 .wrapper {
   width: 960px;
   max-width: 100%;
-  margin: 1rem auto; }
+  margin: 0rem auto; }
 
 p {
   font-family: "Roboto Slab", serif; }
@@ -377,6 +380,9 @@ ul {
 
 .center {
   text-align: center; }
+
+section {
+  padding: 2rem 0 5rem 0; }
 
 header {
   margin: 2rem auto !important; }
@@ -392,7 +398,8 @@ header {
 
 .Home {
   background: #eee;
-  padding: 1rem 0; }
+  padding: 1rem 0;
+  padding-bottom: 5rem; }
 
 .post-block {
   border: 1pc solid #ddd;
@@ -427,3 +434,9 @@ p {
   .page:disabled {
     background: #000;
     color: #fff; }
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: #f5f597; }

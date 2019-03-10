@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {GET_POSTS, GET_POST, GET_CATEGORIES} from './types';
+import {GET_POSTS, GET_POST, GET_CATEGORIES, GET_SINGLE_POST} from './types';
 
 const URI = 'http://demo.wp-api.org/wp-json/wp/v2'
 
@@ -62,7 +62,16 @@ const actions = {
         })
         cb(true);
       })
-  }
+  },
+  getSinglePost: (postId) => (dispatch) => {
+    axios.get(`${URI}/posts/${postId}`)
+      .then(post => {
+        dispatch({
+          type: GET_SINGLE_POST,
+          post: post.data
+        })
+      })
+  } 
 } 
 
 export default actions;

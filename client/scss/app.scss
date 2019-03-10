@@ -32,6 +32,7 @@ header {
 .Home {
   background: #eee;
   padding: 1rem 0;
+  padding-bottom: 5rem;
 }
 
 .post-block {
@@ -77,3 +78,10 @@ p {
   }
 }
 
+// Footer 
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: rgb(245, 245, 151) 
+}

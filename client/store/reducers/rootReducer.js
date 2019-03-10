@@ -1,9 +1,10 @@
-import { GET_POSTS, GET_CATEGORIES } from "../actions/types";
+import { GET_POSTS, GET_CATEGORIES, GET_SINGLE_POST } from "../actions/types";
 
 const initState = {
   posts: null,
   totalPages: 0, 
-  categories: []
+  categories: [],
+  currentPost: null
 }
 
 function rootReducer(state = initState, action) {
@@ -23,6 +24,14 @@ function rootReducer(state = initState, action) {
         ...state,
         categories
       }
+    }
+
+    case GET_SINGLE_POST: {
+       const {post} = action;
+       return {
+         ...state,
+         currentPost: post
+       }
     }
     
     default: return state;
