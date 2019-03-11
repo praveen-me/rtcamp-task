@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import actions from '../store/actions/actions';
 import {Link} from 'react-router-dom';
-import loadHOC from './loadHOC';
-import { compose } from 'redux';
+import { Helmet } from 'react-helmet';
+
+// import loadHOC from './loadHOC';
+// import { compose } from 'redux';
 // import createDOMPurify from 'dompurify';
 // import { JSDOM } from 'jsdom';
 
@@ -112,7 +114,7 @@ class Home extends Component {
         <div className="hero"></div>
         <div className="block wrapper">
           {
-            !isLoading ? (
+            totalPages ? (
               <>
                 <div className="categories-block">
                   <select name="currentCategory" onChange={this.handlePostsByCategories}>

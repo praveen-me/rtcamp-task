@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import actions from '../store/actions/actions';
+import {Helmet} from'react-helmet';
 
 class Post extends Component {
   constructor(props) {
@@ -23,6 +24,13 @@ class Post extends Component {
         {
           !post ? <p>Loading...</p> : (
             <div className="post-block">
+              {/* Helmet Initialization */}
+              <Helmet>
+                <meta charSet="utf-8" />
+                <title>{post.title.rendered}</title>
+                <link rel="canonical" href={`/posts/${post.id}`}/>
+              </Helmet>
+            
               <h2 className="post-title center">{post.title.rendered}</h2>
               <p dangerouslySetInnerHTML={{__html : post.content.rendered}}></p>
             </div>
