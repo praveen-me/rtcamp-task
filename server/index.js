@@ -43,7 +43,7 @@ function getContent(req, res) {
   });
 }
 
-const PORT = process.env.PORT || 8001
+const PORT = process.env.PORT || 3001
 
 app.listen(PORT, (err) => {
   console.log(`Server is running on http://localhost:3001`);
