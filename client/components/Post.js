@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import actions from '../store/actions/actions';
-import {Helmet} from'react-helmet';
+import {Helmet} from 'react-helmet';
 
 class Post extends Component {
   constructor(props) {

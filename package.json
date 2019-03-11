@@ -5,7 +5,7 @@
   "license": "MIT",
   "author": "Praveen Kumar Saini",
   "scripts": {
-    "dev": "npm-run-all --parallel dev:*",
+    "start": "npm-run-all --parallel dev:*",
     "dev:server": "webpack --config webpack.server.js --watch",
     "dev:express": "nodemon dist/server.bundle.js",
     "dev:client": "webpack --config webpack.client.js --watch"
