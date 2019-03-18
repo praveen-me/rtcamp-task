@@ -82,7 +82,6 @@ class Home extends Component {
       currentPage: 1
     }, () => {
       const {currentCategory} = this.state;
-      console.log(currentCategory);
       this.postsByCategories(1, currentCategory);
     })
   }
@@ -90,7 +89,6 @@ class Home extends Component {
   postsByCategories = (page, category) => {
     // checking if there's any category selected
     if(!Number.isNaN(Number(category))) {
-      // console.log(curr);
       this.props.dispatch(actions.getPostsByCategories(Number(category), page, (postsStatus) => {
         if (postsStatus) {
           this.setState({
@@ -167,7 +165,7 @@ function loadData(store) {
 
 function mapStateToProps(state) {
   const {posts, totalPages, categories} = state;
-  console.log(totalPages);
+
   return  {
     posts,
     totalPages,

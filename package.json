@@ -5,10 +5,13 @@
   "license": "MIT",
   "author": "Praveen Kumar Saini",
   "scripts": {
-    "start": "npm-run-all --parallel dev:*",
+    "start": "nodemon dist/server.bundle.js",
     "dev:server": "webpack --config webpack.server.js --watch",
     "dev:express": "nodemon dist/server.bundle.js",
-    "dev:client": "webpack --config webpack.client.js --watch"
+    "dev:client": "webpack --config webpack.client.js --watch",
+    "build:client" : "webpack --config webpack.client.prod.js",
+    "build:server" : "webpack --config webpack.server.prod.js",
+    "build" : "npm-run-all --parallel build:*"
   },
   "dependencies": {
     "@babel/core": "^7.3.4",

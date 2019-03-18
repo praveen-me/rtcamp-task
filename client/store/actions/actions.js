@@ -25,7 +25,6 @@ const actions = {
   },
   // getting categories
   getCategories: (cb) => (dispatch) => {
-  
     axios.get(`${URI}/categories/`)
       .then(categories => {
         dispatch({
@@ -39,10 +38,8 @@ const actions = {
   },
   // Getting Posts By Categories
   getPostsByCategories: (categoryId, page, cb) => (dispatch) => {
-    console.log(categoryId);
     axios.get(`${URI}/posts?categories=${categoryId}&per_page=3&page=${page}`)
       .then(posts => {
-        console.log(posts.data);
         const pagesArr = [];
         dispatch({
           type: GET_POSTS,

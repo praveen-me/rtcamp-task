@@ -39,7 +39,7 @@ export function template(path, store) {
       </head>
       <body  ${helmet.bodyAttributes.toString()}>
         <div id="root">${jsx}</div>
-        <script src="/client.bundle.js"></script>
+        <script src="/client.prod.bundle.js"></script>
       </body>
     </html>
   `
