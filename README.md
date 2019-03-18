@@ -6,7 +6,7 @@ The React, Redux and Router all are served by the server. Check out the demo fro
 * Clone the repo by `git clone https://github.com/praveen-me/rtcamp-task.git`.
 * Then go the directory using `cd rtcamp-task`.
 * Then install all the dependencies using `npm install`.
-* For running development server use `npm start`.
+* For running development server use `npm run dev`.
 
 ## Tech Stack Used (Tools and Libraries)
 * React
