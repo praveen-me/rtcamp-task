@@ -6,13 +6,13 @@
   "author": "Praveen Kumar Saini",
   "scripts": {
     "start": "nodemon dist/server.prod.bundle.js",
-    "dev" : "npm-run-all --parallel dev:*",
+    "dev": "npm-run-all --parallel dev:*",
     "dev:server": "webpack --config webpack.server.js --watch",
     "dev:express": "nodemon dist/server.bundle.js",
     "dev:client": "webpack --config webpack.client.js --watch",
-    "build:client" : "webpack --config webpack.client.prod.js",
-    "build:server" : "webpack --config webpack.server.prod.js",
-    "build" : "npm-run-all --parallel build:*"
+    "build:client": "webpack --config webpack.client.prod.js",
+    "build:server": "webpack --config webpack.server.prod.js",
+    "build": "npm-run-all --parallel build:*"
   },
   "dependencies": {
     "@babel/core": "^7.3.4",
@@ -21,6 +21,7 @@
     "@babel/preset-react": "^7.0.0",
     "axios": "^0.18.0",
     "babel-loader": "^8.0.5",
+    "cors": "^2.8.5",
     "css-loader": "^2.1.1",
     "dompurify": "^1.0.10",
     "express": "^4.16.4",
