@@ -16,7 +16,7 @@ class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      perPage : 3,
+      perPage : 10,
       isLoading: true,
       currentPage: 1,
       getCategories : true,
@@ -40,7 +40,7 @@ class Home extends Component {
       const {perPage, currentPage, currentCategory} = this.state;
       
       if(currentCategory && currentCategory !== 'default') {
-        this.postsByCategories(currentPage, currentCategory);
+        this.postsByCategories(currentPage, perPage, currentCategory);
       } else {
         this.getAllPostForPage(currentPage, perPage);
       }
@@ -81,15 +81,15 @@ class Home extends Component {
       currentCategory: value,
       currentPage: 1
     }, () => {
-      const {currentCategory} = this.state;
-      this.postsByCategories(1, currentCategory);
+      const {currentCategory, perPage} = this.state;
+      this.postsByCategories(1, perPage, currentCategory);
     })
   }
 
-  postsByCategories = (page, category) => {
+  postsByCategories = (page, perPage, category) => {
     // checking if there's any category selected
     if(!Number.isNaN(Number(category))) {
-      this.props.dispatch(actions.getPostsByCategories(Number(category), page, (postsStatus) => {
+      this.props.dispatch(actions.getPostsByCategories(Number(category), page, perPage, (postsStatus) => {
         if (postsStatus) {
           this.setState({
             isLoading: false
@@ -160,7 +160,7 @@ class Home extends Component {
 }
 
 function loadData(store) {
-  return store.dispatch(actions.getPosts(1, 3, () => {}));
+  return store.dispatch(actions.getPosts(1, 10, () => {}));
 }
 
 function mapStateToProps(state) {

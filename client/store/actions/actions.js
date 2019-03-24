@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {GET_POSTS, GET_POST, GET_CATEGORIES, GET_SINGLE_POST} from './types';
 
-const URI = 'https://demo.wp-api.org/wp-json/wp/v2';
+const URI = 'https://rtcamp.com/wp-json/wp/v2';
 
 const actions = {
   getPosts : (page, perPage, cb) => (dispatch) => {
@@ -37,8 +37,8 @@ const actions = {
       })
   },
   // Getting Posts By Categories
-  getPostsByCategories: (categoryId, page, cb) => (dispatch) => {
-    axios.get(`${URI}/posts?categories=${categoryId}&per_page=3&page=${page}`)
+  getPostsByCategories: (categoryId, page, perPage, cb) => (dispatch) => {
+    axios.get(`${URI}/posts?categories=${categoryId}&per_page=${perPage}&page=${page}`)
       .then(posts => {
         const pagesArr = [];
         dispatch({
