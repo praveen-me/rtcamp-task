@@ -8,7 +8,7 @@ import Header from '../client/components/Header';
 import Footer from '../client/components/Footer';
 import { Helmet } from 'react-helmet';
 
-
+// template going to be rendered both client and server side
 export function template(path, store) {
   const helmet = Helmet.renderStatic();
   
@@ -39,7 +39,7 @@ export function template(path, store) {
       </head>
       <body  ${helmet.bodyAttributes.toString()}>
         <div id="root">${jsx}</div>
-        <script src="/client.prod.bundle.js"></script>
+        <script src="/client.bundle.js"></script>
       </body>
     </html>
   `
